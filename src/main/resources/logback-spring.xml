@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <property name="CONSOLE_LOG_PATTERN"
+              value="%clr(%d{${LOG_DATEFORMAT_PATTERN:yyyy-MM-dd HH:mm:ss.SSS}}){faint} %gray(user:%X{user:-system}) %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %X{mdc_session}/%X{mdc_correlationid} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+    <include resource="json-console-appender.xml"/>
+
+    <springProperty scope="context" name="console_type" source="poc.springintegration.mail.logging.console" defaultValue="CONSOLE"/>
+
+    <root level="INFO">
+        <appender-ref ref="${console_type}"/>
+    </root>
+    <jmxConfigurator/>
+</configuration>
